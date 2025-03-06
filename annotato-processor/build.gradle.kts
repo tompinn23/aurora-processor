@@ -1,10 +1,14 @@
 plugins {
     id("java-library")
+    id("signing")
 }
 
 repositories {
     mavenCentral()
 }
+
+group = "org.yonside"
+version = "0.10.0"
 
 java {
     toolchain {
@@ -23,4 +27,23 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.register<Jar>("javadocJar") {
+    archiveClassifier.set("javadoc")
+    from(tasks.javadoc)
+}
+
+tasks.register<Jar>("sourcesJar") {
+    archiveClassifier.set("sources")
+    from(sourceSets.main.get().allSource)
+}
+
+artifacts {
+    add("archives", tasks["javadocJar"])
+    add("archives", tasks["sourcesJar"])
+}
+
+signing {
+    sign(configurations.archives.get())
 }

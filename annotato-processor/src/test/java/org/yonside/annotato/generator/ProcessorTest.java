@@ -1,6 +1,5 @@
-package uk.org.yonside.annotato.generator;
+package org.yonside.annotato.generator;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import javax.tools.*;
@@ -37,7 +36,7 @@ public class ProcessorTest {
                         List.of("--release=" + Integer.getInteger("java.specification.version")),
                         null,
                         files);
-        task.setProcessors(List.of(new Processor()));
+        task.setProcessors(List.of(new ServiceProcessor()));
 
         assertTrue(task.call());
     }
