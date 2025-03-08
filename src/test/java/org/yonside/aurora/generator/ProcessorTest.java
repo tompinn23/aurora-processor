@@ -1,6 +1,7 @@
-package org.yonside.annotato.generator;
+package org.yonside.aurora.generator;
 
 import org.junit.jupiter.api.Test;
+import org.yonside.aurora.generator.ServiceProcessor;
 
 import javax.tools.*;
 import java.io.File;
@@ -17,7 +18,7 @@ public class ProcessorTest {
 
     @Test
     void test() throws IOException {
-        final String source = Paths.get("src/test/java/uk/org/yonside/annotato/generator/model").toAbsolutePath().toString();
+        final String source = Paths.get("src/test/java/org/yonside/aurora/generator/model").toAbsolutePath().toString();
 
         final JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         final StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);

@@ -1,4 +1,4 @@
-package org.yonside.annotato.generator;
+package org.yonside.aurora.generator;
 
 import io.avaje.prism.GenerateAPContext;
 import io.avaje.prism.GenerateUtils;
@@ -22,12 +22,12 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Stream;
 
-import static org.yonside.annotato.generator.APContext.*;
+import static org.yonside.aurora.generator.APContext.*;
 
 @GenerateUtils
 @GenerateAPContext
 @SupportedAnnotationTypes({
-        ServicePrism.PRISM_TYPE
+        ServiceProviderPrism.PRISM_TYPE
 })
 public final class ServiceProcessor extends AbstractProcessor {
 
@@ -53,7 +53,7 @@ public final class ServiceProcessor extends AbstractProcessor {
 
         final var processingOver = roundEnv.processingOver();
 
-        maybeElements(roundEnv, ServicePrism.PRISM_TYPE).ifPresent(this::readServices);
+        maybeElements(roundEnv, ServiceProviderPrism.PRISM_TYPE).ifPresent(this::readServices);
 
         if(processingOver) {
             for(var kv : serviceImplementations.entrySet()) {
@@ -77,7 +77,7 @@ public final class ServiceProcessor extends AbstractProcessor {
     private List<TypeElement> getInterfaces(TypeElement element) {
         var ret = new ArrayList<TypeElement>();
 
-        var specified = ServicePrism.getInstanceOn(element).value();
+        var specified = ServiceProviderPrism.getInstanceOn(element).value();
         var interfaces = element.getInterfaces();
         boolean superClass = element.getSuperclass().getKind() != TypeKind.NONE && !"java.lang.Object".equals(asTypeElement(element.getSuperclass()).getQualifiedName().toString());
 

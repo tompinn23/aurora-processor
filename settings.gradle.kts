@@ -1,4 +1,2 @@
-rootProject.name = "annotato"
+rootProject.name = "aurora"
 
-include("annotato-annotations", "annotato-processor")
-include("test")

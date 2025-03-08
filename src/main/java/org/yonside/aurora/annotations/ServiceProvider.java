@@ -1,4 +1,4 @@
-package org.yonside.annotato;
+package org.yonside.aurora.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
@@ -14,6 +14,6 @@ import java.lang.annotation.Target;
  * </ul>
  */
 @Target(ElementType.TYPE)
-public @interface Service {
+public @interface ServiceProvider {
     Class<?>[] value() default {};
 }
